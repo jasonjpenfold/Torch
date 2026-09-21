@@ -77,7 +77,7 @@ struct ContentView: View {
                 }
                         
         }
-        .buttonStyle(.borderless)
+        .buttonStyle(TorchButtonStyle())
         
         
     }
