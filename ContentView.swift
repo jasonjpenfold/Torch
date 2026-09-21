@@ -41,10 +41,11 @@ struct ContentView: View {
             RoundedRectangle(cornerRadius: 25.0)
                 .foregroundStyle(.white.opacity(0.07))
                 .frame(width: 200)
+                .blur(radius: 5)
                 .overlay{
-                    VStack(spacing: 12){
+                    VStack(spacing: 20){
                         Image(systemName: "flashlight.on.fill")
-                            .font(.system(size: 120, weight: .bold, design: .rounded))
+                            .font(.system(size: 200, weight: .bold, design: .rounded))
                             .foregroundStyle(model.isOn ? .yellow : .white)
                             .scaleEffect(model.isOn ? 1.05 : 1)
                             .opacity(model.isOn ? 1 : 0.45)
@@ -67,14 +68,16 @@ struct ContentView: View {
             
         }label:{
             Circle()
-                .fill(.white.opacity(0.2))
-                .frame(width: 100, height: 100)
+                .fill(.white.opacity(0.15))
+                .frame(width: 110, height: 110)
+                .blur(radius: 4)
                 .overlay{
                     
                     Image(systemName: "power")
                         .font(.system(size: 80, weight: .medium, design: .rounded))
                         .foregroundStyle(model.isOn ? .yellow : .white)
-                        .shadow(color: .white,radius: 5)
+                      
+                        
                 }
                         
         }
