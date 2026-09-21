@@ -1,42 +1,22 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var torchIsOn = false
+    
     @Environment(TorchViewModel.self) private var model
     var body: some View {
         ZStack{
-            Color.black.opacity(model.isOn ? 0.9 : 0.5)
+            background
             
             VStack(spacing: 36) {
                 
                 Spacer()
+                header
                 
-                Text(model.isOn ? "TORCH ON" : "TORCH OFF")
-                        .font(.system(.subheadline, design: .rounded))
-                        .bold()
-                        .foregroundStyle(model.isOn ? .white : .black)
-                        .shadow(color: model.isOn ? .yellow : .clear, radius: 40)
-                        
                 Spacer()
-                Image(systemName: "flashlight.on.fill")
-                    .font(.system(size: 120, weight: .bold, design: .rounded))
-                    .foregroundStyle(model.isOn ? .yellow : .white)
-                    .scaleEffect(model.isOn ? 1.05 : 1)
-                    
+                torchDisplay
+                
                 Spacer()
-                Button{
-                    withAnimation{
-                        model.toggleTorchMode()
-                    }
-                                        
-                }label:{
-                    Image(systemName: "power.circle").foregroundStyle(.white)
-                        .font(.system(size: 80, weight: .medium, design: .rounded))
-                    
-                    
-                }
-                .buttonStyle(.borderless)
-                .tint(model.isOn ? .orange : .gray)
+                control
                 
                 Spacer()
                 
@@ -46,7 +26,60 @@ struct ContentView: View {
         }
     }
         
-    
-    
+    private var background: some View{
+        Color.black
+            .ignoresSafeArea()
+    }
+    private var header: some View{
+        Text("TORCH")
+            .font(.system(.subheadline, design: .rounded))
+            .bold()
+            .foregroundStyle(.white)
+    }
+    private var torchDisplay: some View{
+        VStack(spacing: 12){
+            RoundedRectangle(cornerRadius: 25.0)
+                .foregroundStyle(.white.opacity(0.1))
+                .frame(width: 200)
+                .overlay{
+                    VStack(spacing: 12){
+                        Image(systemName: "flashlight.on.fill")
+                            .font(.system(size: 120, weight: .bold, design: .rounded))
+                            .foregroundStyle(model.isOn ? .yellow : .white)
+                            .scaleEffect(model.isOn ? 1.05 : 1)
+                            .opacity(model.isOn ? 1 : 0.45)
+                            .animation(.easeInOut(duration: 0.25), value: model.isOn)
+                        
+                        Text(model.isOn ? "ON" : "OFF")
+                            .foregroundStyle(.white)
+                            .font(.system(.largeTitle, design: .rounded))
+                            .bold()
+                        .animation(.easeInOut(duration: 0.25), value: model.isOn)
+                        
+                    }
+                                    }
+                    }
+            }
+    private var control: some View{
+        Button{
+            model.toggleTorchMode()
+            
+            
+        }label:{
+            Circle()
+                .fill(.white.opacity(0.08))
+                .frame(width: 90, height: 90)
+                .overlay{
+                    
+                    Image(systemName: "power.circle")
+                        .font(.system(size: 80, weight: .medium, design: .rounded))
+                        .foregroundStyle(model.isOn ? .yellow : .white)
+                }
+                        
+        }
+        .buttonStyle(.borderless)
+        
+        
+    }
     
 }
