@@ -9,8 +9,8 @@ struct ContentView: View {
             
             VStack(spacing: 36) {
                 
-                Spacer()
-                header
+                //Spacer()
+               // header
                 
                 Spacer()
                 torchDisplay
@@ -39,7 +39,7 @@ struct ContentView: View {
     private var torchDisplay: some View{
         
             RoundedRectangle(cornerRadius: 25.0)
-                .foregroundStyle(.white.opacity(0.1))
+                .foregroundStyle(.white.opacity(0.07))
                 .frame(width: 200)
                 .overlay{
                     VStack(spacing: 12){
