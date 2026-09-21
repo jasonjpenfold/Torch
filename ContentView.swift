@@ -37,7 +37,7 @@ struct ContentView: View {
             .foregroundStyle(.white)
     }
     private var torchDisplay: some View{
-        VStack(spacing: 12){
+        
             RoundedRectangle(cornerRadius: 25.0)
                 .foregroundStyle(.white.opacity(0.1))
                 .frame(width: 200)
@@ -54,11 +54,11 @@ struct ContentView: View {
                             .foregroundStyle(.white)
                             .font(.system(.largeTitle, design: .rounded))
                             .bold()
-                        .animation(.easeInOut(duration: 0.25), value: model.isOn)
+                        
                         
                     }
                                     }
-                    }
+                    
             }
     private var control: some View{
         Button{
@@ -67,13 +67,14 @@ struct ContentView: View {
             
         }label:{
             Circle()
-                .fill(.white.opacity(0.08))
-                .frame(width: 90, height: 90)
+                .fill(.white.opacity(0.2))
+                .frame(width: 100, height: 100)
                 .overlay{
                     
-                    Image(systemName: "power.circle")
+                    Image(systemName: "power")
                         .font(.system(size: 80, weight: .medium, design: .rounded))
                         .foregroundStyle(model.isOn ? .yellow : .white)
+                        .shadow(color: .white,radius: 5)
                 }
                         
         }
