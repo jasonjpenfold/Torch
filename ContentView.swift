@@ -74,7 +74,7 @@ struct ContentView: View {
                 .overlay{
                     
                     Image(systemName: "power")
-                        .font(.system(size: 80, weight: .medium, design: .rounded))
+                        .font(.system(size: 70, weight: .medium, design: .rounded))
                         .foregroundStyle(model.isOn ? .yellow : .white)
                       
                         
