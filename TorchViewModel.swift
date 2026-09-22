@@ -4,14 +4,17 @@ import AVFoundation
 @Observable
 class TorchViewModel{
     private(set) var isOn = false
+    var errorMessage: TorchError? = nil
     
     
     init(){
         
     }
     
+    
     func toggleTorchMode(){
-        guard let device = AVCaptureDevice.default(for: .video) else {return}
+        guard let device = AVCaptureDevice.default(for: .video) else {self._errorMessage = TorchError.torchNotAvailable
+            return}
         
         if device.hasTorch{
             print("I have a torch")
@@ -22,11 +25,11 @@ class TorchViewModel{
                 
                 device.unlockForConfiguration()
             }catch{
-                print("Torch not available")
+                self.errorMessage = TorchError.torchNotAvailable
             }
             self.isOn = device.torchMode == .on
         }else{
-            print("Torch not available")
+            self.errorMessage =  TorchError.noTorchPresent
         }
     }
 }

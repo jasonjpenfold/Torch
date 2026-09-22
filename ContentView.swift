@@ -3,14 +3,13 @@ import SwiftUI
 struct ContentView: View {
     
     @Environment(TorchViewModel.self) private var model
+    
     var body: some View {
+        @Bindable var model = model
         ZStack{
             background
             
             VStack(spacing: 36) {
-                
-                //Spacer()
-               // header
                 
                 Spacer()
                 torchDisplay
@@ -22,7 +21,9 @@ struct ContentView: View {
                 
                 
             }.padding()
-            
+                .alert(item: $model.errorMessage){ error in 
+                    Alert(title: Text("Error"), message: Text( model.errorMessage?.localizedDescription ?? "Unknown error"), dismissButton: .cancel())
+                }
         }
     }
         
