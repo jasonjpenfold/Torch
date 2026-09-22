@@ -82,6 +82,7 @@ struct ContentView: View {
                         
         }
         .buttonStyle(TorchButtonStyle())
+        .sensoryFeedback(.impact(weight: .light), trigger: model.isOn)
         
         
     }
