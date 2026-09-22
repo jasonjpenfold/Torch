@@ -26,6 +26,7 @@ class TorchViewModel{
                 device.unlockForConfiguration()
             }catch{
                 self.errorMessage = TorchError.torchNotAvailable
+                return
             }
             self.isOn = device.torchMode == .on
         }else{
