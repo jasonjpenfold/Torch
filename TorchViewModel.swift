@@ -17,10 +17,10 @@ class TorchViewModel{
             return}
         
         if device.hasTorch{
-            print("I have a torch")
+            
             do{
                 try device.lockForConfiguration()
-                print("Changing torch mode")
+                // Changing torch mode
                 device.torchMode =  !self.isOn ? .on : .off
                 
                 device.unlockForConfiguration()
