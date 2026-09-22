@@ -40,6 +40,7 @@ struct ContentView: View {
         
             RoundedRectangle(cornerRadius: 25.0)
                 .foregroundStyle(.white.opacity(0.07))
+                .accessibilityHidden(true)
                 .frame(width: 200)
                 .blur(radius: 5)
                 .overlay{
@@ -50,14 +51,18 @@ struct ContentView: View {
                             .scaleEffect(model.isOn ? 1.05 : 1)
                             .opacity(model.isOn ? 1 : 0.45)
                             .animation(.easeInOut(duration: 0.25), value: model.isOn)
-                        
+                            
+                            
                         Text(model.isOn ? "ON" : "OFF")
                             .foregroundStyle(.white)
                             .font(.system(.largeTitle, design: .rounded))
                             .bold()
                         
                         
-                    }
+                    }.accessibilityElement(children: .combine)
+                        .accessibilityLabel("Torch")
+                        .accessibilityValue(model.isOn ? "On" : "Off")
+            
                                     }
                     
             }
@@ -83,6 +88,9 @@ struct ContentView: View {
         }
         .buttonStyle(TorchButtonStyle())
         .sensoryFeedback(.impact(weight: .light), trigger: model.isOn)
+        .accessibilityLabel("Torch")
+        .accessibilityValue(model.isOn ? "On" : "Off")
+        .accessibilityHint("Turns the torch on or off")
         
         
     }
