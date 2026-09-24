@@ -31,12 +31,7 @@ struct ContentView: View {
         Color.black
             .ignoresSafeArea()
     }
-    private var header: some View{
-        Text("TORCH")
-            .font(.system(.subheadline, design: .rounded))
-            .bold()
-            .foregroundStyle(.white)
-    }
+    
     private var torchDisplay: some View{
         
             RoundedRectangle(cornerRadius: 25.0)

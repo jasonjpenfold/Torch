@@ -6,12 +6,6 @@ class TorchViewModel{
     private(set) var isOn = false
     var errorMessage: TorchError? = nil
     
-    
-    init(){
-        
-    }
-    
-    
     func toggleTorchMode(){
         guard let device = AVCaptureDevice.default(for: .video) else {self._errorMessage = TorchError.torchNotAvailable
             return}
