@@ -22,7 +22,7 @@ struct ContentView: View {
                 
             }.padding()
                 .alert(item: $model.errorMessage){ error in 
-                    Alert(title: Text("Error"), message: Text( model.errorMessage?.localizedDescription ?? "Unknown error"), dismissButton: .cancel())
+                    Alert(title: Text("Error"), message: Text( "\(error.localizedDescription)"), dismissButton: .cancel())
                 }
         }
     }
